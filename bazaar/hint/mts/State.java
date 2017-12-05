@@ -24,6 +24,22 @@ public class State {
 		this.dialogue = dialogue;
 	}
 	
+	public int getVisitCount() {
+		return visitCount;
+	}
+
+	public void setVisitCount(int visitCount) {
+		this.visitCount = visitCount;
+	}
+
+	public double getWinScore() {
+		return winScore;
+	}
+
+	public void setWinScore(double winScore) {
+		this.winScore = winScore;
+	}
+
 	public void randomPlay()
 	{
 		List<Integer> availableHints = this.dialogue.getUnusedHints();

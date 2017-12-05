@@ -14,7 +14,7 @@ public class MonteCarloTreeSearch {
         while (System.currentTimeMillis() < end) {
             Node promisingNode = selectPromisingNode(rootNode);
             if (promisingNode.getState().getBoard().checkStatus() 
-              == Board.IN_PROGRESS) {
+              == Dialogue.IN_PROGRESS) {
                 expandNode(promisingNode);
             }
             Node nodeToExplore = promisingNode;
@@ -49,5 +49,13 @@ public class MonteCarloTreeSearch {
             tempNode.getState().addScore(WIN_SCORE);
             tempNode = tempNode.getParent();
         }
+    }
+    
+    private Node selectPromisingNode(Node rootNode) {
+        Node node = rootNode;
+        while (node.getChildArray().size() != 0) {
+            node = UCT.findBestNodeWithUCT(node);
+        }
+        return node;
     }
 }
