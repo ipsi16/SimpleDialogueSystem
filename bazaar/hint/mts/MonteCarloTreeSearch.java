@@ -42,8 +42,12 @@ public class MonteCarloTreeSearch {
         return dialogStatus;
     }
 	
-	private void backPropogation(Node nodeToExplore, int playoutResult)
-	{
-		
-	}
+    private void backPropogation(Node nodeToExplore) {
+        Node tempNode = nodeToExplore;
+        while (tempNode != null) {
+            tempNode.getState().incrementVisit();
+            tempNode.getState().addScore(WIN_SCORE);
+            tempNode = tempNode.getParent();
+        }
+    }
 }

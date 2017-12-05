@@ -1,5 +1,7 @@
 package bazaar.hint.mts;
 
+import java.util.List;
+
 public class State {
 	
 	Dialogue dialogue;
@@ -24,6 +26,14 @@ public class State {
 	
 	public void randomPlay()
 	{
-		
+		List<Integer> availableHints = this.dialogue.getUnusedHints();
+        int totalPossibilities = availableHints.size();
+        int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
+        this.dialogue.utter(selectRandom);
+	}
+	
+	public void incrementVisit()
+	{
+		this.visitCount+=1;
 	}
 }
