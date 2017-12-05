@@ -52,4 +52,9 @@ public class State {
 	{
 		this.visitCount+=1;
 	}
+
+	public void addScore(int winScore2) {
+		this.winScore+=winScore2;
+		
+	}
 }

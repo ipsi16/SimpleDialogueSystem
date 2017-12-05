@@ -7,14 +7,14 @@ public class MonteCarloTreeSearch {
  
     public void findNextMove(Dialogue dialogue) {
         // define an end time which will act as a terminating condition
+    	long end = 100000000;
         Tree tree = new Tree();
         Node rootNode = tree.getRoot();
         rootNode.getState().setDialogue(dialogue);
  
         while (System.currentTimeMillis() < end) {
             Node promisingNode = selectPromisingNode(rootNode);
-            if (promisingNode.getState().getBoard().checkStatus() 
-              == Dialogue.IN_PROGRESS) {
+            if (promisingNode.getState().getDialogue().checkStatus()  == Dialogue.IN_PROGRESS) {
                 expandNode(promisingNode);
             }
             Node nodeToExplore = promisingNode;
@@ -22,12 +22,12 @@ public class MonteCarloTreeSearch {
                 nodeToExplore = promisingNode.getRandomChildNode();
             }
             int playoutResult = simulateRandomPlayout(nodeToExplore);
-            backPropogation(nodeToExplore, playoutResult);
+            backPropogation(nodeToExplore);
         }
  
         Node winnerNode = rootNode.getChildWithMaxScore();
         tree.setRoot(winnerNode);
-        return winnerNode.getState().getBoard();
+        
     }
 
     private int simulateRandomPlayout(Node node) {
@@ -58,4 +58,10 @@ public class MonteCarloTreeSearch {
         }
         return node;
     }
+    
+    private void expandNode(Node rootNode)
+    {
+    	
+    }
+    
 }
